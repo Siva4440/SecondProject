@@ -5,11 +5,18 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Rating } from "@mui/material";
+import { updateProducts } from "../Reducers/cartSlice";
+import { useDispatch } from "react-redux";
 
 
 const Products = (props) => {
   const {prod}= props;
-  const {brand,category,price,rating , thumbnail} = prod;
+  const {brand,category,price,rating , thumbnail,discountPercentage} = prod;
+  const dispatch=useDispatch();
+
+  const onAddCartClick=()=>{
+    dispatch(updateProducts(prod))
+  }
 
     return (
       <div>
@@ -30,10 +37,13 @@ const Products = (props) => {
               <Typography gutterBottom variant="span" component="div">
                 Price: Rs {price}
               </Typography>
+              <Typography gutterBottom variant="h6" component="div">
+                {discountPercentage}
+              </Typography>
               <Rating name="read-only" value={rating} readOnly></Rating>
             </CardContent>
             <CardActions>
-              <Button size="small">Add to cart</Button>
+              <Button size="small" onClick={onAddCartClick} >Add to cart</Button>
                
             </CardActions>
           </Card>

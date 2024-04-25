@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,15 +11,40 @@ export default function Login() {
   const dispatch = useDispatch();
   const data = useSelector(state=> state.login);
 
+  const [validationMsg,setValidationMsg]= useState({userNameMsg:"",passwordMsg:""});
+
   const onLoginClick=()=>{
-    loginService(data).then(res=>{
-      //console.log("res",res)
-      dispatch(updateUserDetails(res?.data))
-     if(res.data !== false){
-      navigate('/products')
-     }
-    })
+    if(validateForm()){
+      loginService(data).then(res=>{
+        //console.log("res",res)
+        dispatch(updateUserDetails(res?.data))
+       if(res.data !== false){
+        navigate('/products')
+       }
+      })
+    }
+    
   }
+
+  const validateForm=()=>{
+      const {userName,password}=data;
+      const validations ={};
+      let isValid=true
+      if(!userName){
+        validations.userNameMsg="UserName is Mandaroty";
+          isValid=false;
+      }
+      
+      if(!password){
+        validations.passwordMsg="Password is Mandaroty"
+        isValid=false
+      }
+
+      setValidationMsg(validations)
+      return  isValid;
+  }
+  
+  
   return (
     <div>
       <Box
@@ -46,7 +71,9 @@ export default function Login() {
               variant="outlined"
               fullWidth
               size="small"
-              onChange={e=> dispatch(updateUSerName(e.target.value)) }
+              onChange={e=> dispatch(updateUSerName(e.target.value))}
+              error={Boolean(validationMsg.userNameMsg)}
+              helperText={validationMsg.userNameMsg}
             />
           </Grid>
           <Grid item xs={12}>
@@ -57,7 +84,9 @@ export default function Login() {
               variant="outlined"
               fullWidth
               size="small"
-              onChange={e=> dispatch(updatePassword(e.target.value)) }
+              onChange={e=> dispatch(updatePassword(e.target.value))}
+              error={Boolean(validationMsg.passwordMsg)}
+              helperText={validationMsg.passwordMsg}
             />
           </Grid>
           <Grid item xs={6}>

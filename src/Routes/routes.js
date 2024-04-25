@@ -4,6 +4,7 @@ import Login from "../Pages/Login/login";
 import Registration from "../Pages/Registration/registration";
 import Products from "../Pages/Products/products";
 import Profile from "../Pages/Profile/profile";
+import Cart from "../Pages/Cart/cart";
 
 export default function Router() {
   return (
@@ -14,6 +15,8 @@ export default function Router() {
         <Route path="/registration" element={< Registration/>}></Route>
         <Route path="/products" element={< Products/>}></Route>
         <Route path="/profile" element={< Profile/>}></Route>
+        <Route path="/cart" element={< Cart/>}></Route>
+
       </Routes>
     </BrowserRouter>
   );
