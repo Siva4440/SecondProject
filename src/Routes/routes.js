@@ -8,7 +8,7 @@ import Cart from "../Pages/Cart/cart";
 
 export default function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/secondProject">
       <Routes>
         <Route path="/" element={< Login/>}></Route>
         <Route path="/login" element={< Login/>}></Route>
