@@ -1,0 +1,45 @@
+.table-container {
+    width: 80%;
+    height: 500px;
+    background-color: lightgray;
+    margin: 50px auto;
+    overflow: auto; /* Allows both vertical and horizontal scrolling */
+  }
+  
+  
+  .table-data {
+    width: 100%;
+    border-collapse: collapse; /* Ensure borders are collapsed */
+    table-layout: auto; /* Allow the table to adjust its layout based on content */
+  }
+  
+  table, th, td {
+    border: 1px solid red;
+    padding: 12px;
+    min-width: 150px; /* Ensure minimum width for columns */
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Light gray background for header cells */
+    text-align: left; /* Left-align header text */
+  }
+  
+  td {
+    background-color: #fff; /* White background for body cells */
+  }
+  .arrow-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .arrow-button.left {
+    left: 10px;
+  }
+  
+  
